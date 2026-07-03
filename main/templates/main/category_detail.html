@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Categories</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="header-top">
+                <div class="brand">
+                    <div class="brand-logo">F</div>
+                    <div>
+                        <span class="brand-name">Furni</span>
+                        <span class="brand-tag">меблі вигідно</span>
+                    </div>
+                </div>
+
+                <div class="header-center">
+                    <div class="search-block">
+                        <input id="searchInput" type="search" placeholder="Пошук..." aria-label="Search categories">
+                        <div class="search-select">
+                            <span>Усі</span>
+                            <span class="select-icon">▾</span>
+                        </div>
+                        <button class="search-submit" type="button" aria-label="Search">🔍</button>
+                    </div>
+                    <div class="contact-block">
+                        <span>Зв'язатися з нами</span>
+                        <div class="phone-list">
+                            <a href="tel:0503248003">050 324 80 03</a>
+                            <a href="tel:0673290552">067 329 05 52</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-icons">
+                        <button class="icon-button" aria-label="Views">👁</button>
+                        <button class="icon-button" aria-label="Favorites">❤</button>
+                        <button class="icon-button" aria-label="Cart">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="main-top">
+                <button class="catalog-button">Каталог</button>
+                <nav class="breadcrumb">
+                    <span>ГОЛОВНА</span>
+                    <span>›</span>
+                    <span>МЕБЛІ ТА ВСЕ ДЛЯ ДОМУ</span>
+                    <span>›</span>
+                    <span class="current">КРІСЛА. СТІЛЬЦІ. ПУФИ</span>
+                </nav>
+            </div>
+
+            <section class="content-head">
+                <h1>Категорії:</h1>
+            </section>
+
+            <section class="category-grid" id="categoryGrid">
+                {% for sub in subcategories %}
+                <a class="category-card" href="{{ sub.link }}" data-title="{{ category.name|lower }}">
+                    <div class="category-image" style="background-image: url('{{ sub.image_url }}')"></div>
+                    <div class="category-meta">
+                        <span class="category-name">{{ sub.name }}</span>
+                    </div>
+                </a>
+                {% empty %}
+                    <p>У цій категорії немає підкатегорій.</p>
+                {% endfor %}
+            </section>
+        </main>
+
+    <script src="{% static 'main/js/scripts.js' %}"></script>
+</body>
+</html>
