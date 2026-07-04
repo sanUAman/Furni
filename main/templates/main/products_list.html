@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Furni</title>
-    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/pl.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </header>
-
+        
         <main>
             <div class="main-top">
                 <button class="catalog-button">Каталог</button>
@@ -63,17 +63,17 @@
             </div>
 
             <section class="content-head">
-                <h1>Категорії:</h1>
+                <h1>{{ category_name }}</h1>
             </section>
 
             <section class="category-grid" id="categoryGrid">
-                {% for sub in data %}
+                {% for prod in data %}
                     <a class="category-card" 
-                    href="{% url 'main:category_detail' category_slug=sub.link|cut:'https://doloto.com.ua/ua/catalog/'|cut:'/1/' %}" 
-                    data-title="{{ sub.name|lower }}">
-                    <div class="category-image" style="background-image: url('{{ sub.image_url }}')"></div>
+                    href="{% url 'main:product_page' product_slug=prod.link|cut:'https://doloto.com.ua/ua/product/'|cut:'/' %}" class="btn-buy" data-title="{{ prod.name|lower }}">
+                    <div class="category-image" style="background-image: url('{{ prod.image_url }}')"></div>
                     <div class="category-meta">
-                        <span class="category-name">{{ sub.name }}</span>
+                        <span class="category-name">{{ prod.name }}</span>
+                        <span class="category-price">{{ prod.price }}</span>
                     </div>
                     </a>
                 {% empty %}
@@ -82,7 +82,7 @@
             </section>
         </main>
     </div>
-    
+
     <script src="{% static 'main/js/scripts.js' %}"></script>
 </body>
 </html>
